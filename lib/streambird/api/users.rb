@@ -27,6 +27,12 @@ class Streambird
         json_body = JSON.parse(response.body, symbolize_names: true)
         return json_body
       end
+
+      def delete(user_id:)
+        response = client.delete("auth/users/#{user_id}/delete")
+        json_body = JSON.parse(response.body, symbolize_names: true)
+        return json_body
+      end
     end
   end
 end
