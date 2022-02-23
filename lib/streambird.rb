@@ -35,6 +35,11 @@ class Streambird
     @otps ||= Streambird::Api::Otps.new(client)
   end
 
+  def users
+    @users ||= Streambird::Api::Users.new(client)
+  end
+
+
   alias_method :live, :live?
   alias_method :test, :test?
   alias_method :live_mode?, :live?
@@ -45,3 +50,4 @@ require 'streambird/api'
 require 'streambird/api/errors'
 require 'streambird/api/magic_links'
 require 'streambird/api/otps'
+require 'streambird/api/users'
