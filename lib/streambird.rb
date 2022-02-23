@@ -24,12 +24,15 @@ class Streambird
   end
 
   def client
-    puts default_request_params
     @client ||= Api.new(api_key, default_request_params, logging)
   end
 
   def magic_links
     @magic_links ||= Streambird::Api::MagicLinks.new(client)
+  end
+
+  def otps
+    @otps ||= Streambird::Api::Otps.new(client)
   end
 
   alias_method :live, :live?
@@ -41,3 +44,4 @@ end
 require 'streambird/api'
 require 'streambird/api/errors'
 require 'streambird/api/magic_links'
+require 'streambird/api/otps'
