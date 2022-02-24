@@ -43,6 +43,10 @@ class Streambird
     @oauth ||= Streambird::Api::OAuth.new(client)
   end
 
+  def sessions
+    @sessions ||= Streambird::Api::Sessions.new(client)
+  end
+
 
   alias_method :live, :live?
   alias_method :test, :test?
@@ -56,3 +60,4 @@ require 'streambird/api/magic_links'
 require 'streambird/api/otps'
 require 'streambird/api/users'
 require 'streambird/api/oauth'
+require 'streambird/api/sessions'
