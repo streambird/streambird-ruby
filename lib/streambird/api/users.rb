@@ -27,7 +27,7 @@ class Streambird
         middle_name: nil,
         last_name: nil,
         emails: [],
-        phone_numbers: [],
+        phone_numbers: []
       )
         req = {}
         req['first_name'] = first_name if !first_name.nil?
