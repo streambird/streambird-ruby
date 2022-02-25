@@ -47,6 +47,10 @@ class Streambird
     @sessions ||= Streambird::Api::Sessions.new(client)
   end
 
+  def wallets
+    @wallets ||= Streambird::Api::Wallets.new(client)
+  end
+
 
   alias_method :live, :live?
   alias_method :test, :test?
@@ -61,3 +65,4 @@ require 'streambird/api/otps'
 require 'streambird/api/users'
 require 'streambird/api/oauth'
 require 'streambird/api/sessions'
+require 'streambird/api/wallets'
