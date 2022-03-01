@@ -1,9 +1,9 @@
 class Streambird
   class Api
-    class MagicLinks < Struct.new(:client)
+    class MagicLink < Struct.new(:client)
       
       def email
-        @email ||= Streambird::Api::MagicLinks::Email.new(client)
+        @email ||= Streambird::Api::MagicLink::Email.new(client)
       end
 
       def create(user_id:)
@@ -11,6 +11,23 @@ class Streambird
           'user_id': user_id,
         }
         response = client.post('auth/magic_links/create', req)
+        json_body = JSON.parse(response.body, symbolize_names: true)
+        return json_body
+      end
+
+      def verify(token:,
+        session_token: nil,
+        session_expires_in: nil,
+        device_fingerprint: {}
+      )
+        req = {
+          'token': token,
+        }
+
+        req['device_fingerprint'] = device_fingerprint if device_fingerprint != {}
+        req['session_expires_in'] = session_expires_in if !session_expires_in.nil?
+        req['session_token'] = session_token if !session_token.nil?
+        response = client.post('auth/magic_links/verify', req)
         json_body = JSON.parse(response.body, symbolize_names: true)
         return json_body
       end

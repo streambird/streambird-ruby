@@ -28,6 +28,27 @@ require 'streambird'
 streambird = Streambird.new(api_key: 'API_KEY')
 ```
 
+### Example
+
+
+Start a email magic link flow:
+
+```ruby
+streambird.magic_links.email.login_or_create(
+    email: 'dev@streambird.io',
+    login_redirect_url: 'https://example.com/login',
+    registration_redirect_url: 'https://example.com/register',
+)
+```
+
+Verify the magic llink token:
+
+```ruby
+streambird.magic_links.verify(
+    token: 'bbqg5fxQrCkgIZr3HyWlxNdZ5l_lDNPrRlxnQ0KHTBk',
+)
+```
+
 ## Errors
 
 This gem will raise exceptions on application-level errors. Here are the list of errors:

@@ -1,4 +1,4 @@
-RSpec.describe Streambird::Api::MagicLinks do
+RSpec.describe Streambird::Api::MagicLink do
   let(:streambird) { Streambird.new(api_key: STREAMBIRD_TEST_API_KEY) }
   let(:login_or_create_resp) do
     # reuse cassette from magic_links_create

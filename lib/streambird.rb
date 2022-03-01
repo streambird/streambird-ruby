@@ -24,13 +24,33 @@ class Streambird
   end
 
   def client
-    puts default_request_params
     @client ||= Api.new(api_key, default_request_params, logging)
   end
 
   def magic_links
-    @magic_links ||= Streambird::Api::MagicLinks.new(client)
+    @magic_links ||= Streambird::Api::MagicLink.new(client)
   end
+
+  def otps
+    @otps ||= Streambird::Api::Otp.new(client)
+  end
+
+  def users
+    @users ||= Streambird::Api::User.new(client)
+  end
+
+  def oauth
+    @oauth ||= Streambird::Api::OAuth.new(client)
+  end
+
+  def sessions
+    @sessions ||= Streambird::Api::Session.new(client)
+  end
+
+  def wallets
+    @wallets ||= Streambird::Api::Wallet.new(client)
+  end
+
 
   alias_method :live, :live?
   alias_method :test, :test?
@@ -40,4 +60,9 @@ end
 
 require 'streambird/api'
 require 'streambird/api/errors'
-require 'streambird/api/magic_links'
+require 'streambird/api/magic_link'
+require 'streambird/api/otp'
+require 'streambird/api/user'
+require 'streambird/api/oauth'
+require 'streambird/api/session'
+require 'streambird/api/wallet'

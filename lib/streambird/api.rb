@@ -4,7 +4,7 @@ require 'json'
 
 class Streambird
   class Api < Struct.new(:api_key, :default_request_params, :logging)
-    STREAMBIRD_API_URL = 'http://localhost:11019/v1/'
+    STREAMBIRD_API_URL = ENV['STREAMBIRD_API_URL'] || 'https://api.streambird.io/v1/'
     STREAMBIRD_GEM_INFO = Gem.loaded_specs["streambird"]
     STREAMBIRD_RUBY_CLIENT_VERSION = STREAMBIRD_GEM_INFO ? STREAMBIRD_GEM_INFO.version.to_s : '0.1.1'.freeze
 
@@ -35,9 +35,29 @@ class Streambird
     end
 
     def post(url, body = {})
-      
       body = default_request_params.merge(body)
       response = connection.post do |req|
+        req.url "#{STREAMBIRD_API_URL}#{url}"
+        req.headers['Content-Type'] = 'application/json'
+        req.body = body.to_json
+        req.headers['X-API-Client'] = "Ruby"
+        req.headers["X-API-Client-Version"] = STREAMBIRD_RUBY_CLIENT_VERSION
+      end
+
+      if response.status != 200 and response.status != 201
+        return handle_error(response)
+      end
+
+      response
+    rescue Faraday::Error::ConnectionFailed
+      raise Streambird::Api::ConnectionError
+    end
+
+
+    def delete(url, body = {})
+      
+      body = default_request_params.merge(body)
+      response = connection.delete do |req|
         req.url "#{STREAMBIRD_API_URL}#{url}"
         req.headers['Content-Type'] = 'application/json'
         req.body = body.to_json
