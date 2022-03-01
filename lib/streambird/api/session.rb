@@ -24,6 +24,16 @@ class Streambird
         json_body = JSON.parse(response.body, symbolize_names: true)
         return json_body
       end
+
+      def delete(session_token: nil, session_id: nil)
+        req = {}
+
+        req['session_token'] = session_token if !session_token.nil?
+        req['session_id'] = session_id if !session_id.nil?
+        response = client.delete('auth/sessions/delete', req)
+        json_body = JSON.parse(response.body, symbolize_names: true)
+        return json_body
+      end
     end
   end
 end
