@@ -28,15 +28,15 @@ class Streambird
   end
 
   def magic_links
-    @magic_links ||= Streambird::Api::MagicLinks.new(client)
+    @magic_links ||= Streambird::Api::MagicLink.new(client)
   end
 
   def otps
-    @otps ||= Streambird::Api::Otps.new(client)
+    @otps ||= Streambird::Api::Otp.new(client)
   end
 
   def users
-    @users ||= Streambird::Api::Users.new(client)
+    @users ||= Streambird::Api::User.new(client)
   end
 
   def oauth
@@ -44,11 +44,11 @@ class Streambird
   end
 
   def sessions
-    @sessions ||= Streambird::Api::Sessions.new(client)
+    @sessions ||= Streambird::Api::Session.new(client)
   end
 
   def wallets
-    @wallets ||= Streambird::Api::Wallets.new(client)
+    @wallets ||= Streambird::Api::Wallet.new(client)
   end
 
 
@@ -60,9 +60,9 @@ end
 
 require 'streambird/api'
 require 'streambird/api/errors'
-require 'streambird/api/magic_links'
-require 'streambird/api/otps'
-require 'streambird/api/users'
+require 'streambird/api/magic_link'
+require 'streambird/api/otp'
+require 'streambird/api/user'
 require 'streambird/api/oauth'
-require 'streambird/api/sessions'
-require 'streambird/api/wallets'
+require 'streambird/api/session'
+require 'streambird/api/wallet'

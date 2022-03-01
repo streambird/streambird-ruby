@@ -1,9 +1,9 @@
 class Streambird
   class Api
-    class MagicLinks < Struct.new(:client)
+    class MagicLink < Struct.new(:client)
       
       def email
-        @email ||= Streambird::Api::MagicLinks::Email.new(client)
+        @email ||= Streambird::Api::MagicLink::Email.new(client)
       end
 
       def create(user_id:)

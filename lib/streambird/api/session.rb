@@ -1,6 +1,6 @@
 class Streambird
   class Api
-    class Sessions < Struct.new(:client)
+    class Session < Struct.new(:client)
     
       def verify(session_token:,
         session_expires_in: nil

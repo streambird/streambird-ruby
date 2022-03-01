@@ -1,6 +1,6 @@
 class Streambird
   class Api
-    class Wallets < Struct.new(:client)
+    class Wallet < Struct.new(:client)
 
       def begin_registration(wallet_type:,
         public_address:,

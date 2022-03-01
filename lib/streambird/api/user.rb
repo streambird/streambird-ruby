@@ -1,6 +1,6 @@
 class Streambird
   class Api
-    class Users < Struct.new(:client)
+    class User < Struct.new(:client)
     
       def create(email: nil, 
         phone_number: nil,

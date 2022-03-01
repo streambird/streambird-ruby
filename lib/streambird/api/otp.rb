@@ -1,13 +1,13 @@
 class Streambird
   class Api
-    class Otps < Struct.new(:client)
+    class Otp < Struct.new(:client)
       
       def email
-        @email ||= Streambird::Api::Otps::Email.new(client)
+        @email ||= Streambird::Api::Otp::Email.new(client)
       end
 
       def sms
-        @sms ||= Streambird::Api::Otps::Sms.new(client)
+        @sms ||= Streambird::Api::Otp::Sms.new(client)
       end
 
       def verify(otp:,

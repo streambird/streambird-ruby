@@ -45,7 +45,7 @@ Verify the magic llink token:
 
 ```ruby
 streambird.magic_links.verify(
-    token: 'bbqg5fxQrCkgIZr3HyWlxNdZ5l_lDNPrRlxnQ0KHTBk'',
+    token: 'bbqg5fxQrCkgIZr3HyWlxNdZ5l_lDNPrRlxnQ0KHTBk',
 )
 ```
 
