@@ -41,25 +41,25 @@ class Streambird
         return json_body
       end
 
-      def get(user_id:)
+      def get(user_id)
         response = client.get("auth/users/#{user_id}")
         json_body = JSON.parse(response.body, symbolize_names: true)
         return json_body
       end
 
-      def delete(user_id:)
+      def delete(user_id)
         response = client.delete("auth/users/#{user_id}/delete")
         json_body = JSON.parse(response.body, symbolize_names: true)
         return json_body
       end
 
-      def delete_email(email_id:)
+      def delete_email(email_id)
         response = client.delete("auth/users/emails/#{email_id}/delete")
         json_body = JSON.parse(response.body, symbolize_names: true)
         return json_body
       end
 
-      def delete_phone_number(phone_number_id:)
+      def delete_phone_number(phone_number_id)
         response = client.delete("auth/users/phone_numbers/#{phone_number_id}/delete")
         json_body = JSON.parse(response.body, symbolize_names: true)
         return json_body

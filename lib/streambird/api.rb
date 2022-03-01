@@ -53,9 +53,27 @@ class Streambird
       raise Streambird::Api::ConnectionError
     end
 
+    def put(url, body = {})
+      body = default_request_params.merge(body)
+      response = connection.put do |req|
+        req.url "#{STREAMBIRD_API_URL}#{url}"
+        req.headers['Content-Type'] = 'application/json'
+        req.body = body.to_json
+        req.headers['X-API-Client'] = "Ruby"
+        req.headers["X-API-Client-Version"] = STREAMBIRD_RUBY_CLIENT_VERSION
+      end
+
+      if response.status != 200 and response.status != 201
+        return handle_error(response)
+      end
+
+      response
+    rescue Faraday::Error::ConnectionFailed
+      raise Streambird::Api::ConnectionError
+    end
+
 
     def delete(url, body = {})
-      
       body = default_request_params.merge(body)
       response = connection.delete do |req|
         req.url "#{STREAMBIRD_API_URL}#{url}"

@@ -6,7 +6,7 @@ class Streambird
         @email ||= Streambird::Api::MagicLink::Email.new(client)
       end
 
-      def create(user_id:)
+      def create(user_id)
         req = {
           'user_id': user_id,
         }
